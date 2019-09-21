@@ -25,26 +25,36 @@ def decide_query_type(query):
 		if current_dict.get('parent_name') == query.capitalize():
 			is_name = True
 			parent_id = str(current_dict.get('parent_id'))
+		counter += 1
 	if is_name == True:
 		return show_building(parent_id)
 	else:
-		return showing_number(query)
-
-
+		return show_number(query)
 
 
 def show_building(parent_id):
 
 	key = "-VsZgGinNEOP9UZyeYhElGo6EpdmeMQq6lpJRfZYhO4vh0SH56NLQo54p0oh7Qh_"
 	auth = {'auth_token' : key}
-	
 	r = requests.get('https://density.adicu.com/latest/building/' + parent_id, params=auth)	
 	data =  json.loads(r.text)
-	percent_full = data.get('data')[0].get('percent_full')
-	return '%s is %s%% full' % ("Avery", percent_full)
+	list_of_strings = []
+	list_of_dicts = data.get('data')
+	num_groups = len(list_of_dicts)
+	key1 = 'group_name'
+	key2 = 'percent_full'
+	for x in range(num_groups):
+		dict = list_of_dicts[x]
+		line = dict.get(key1) + ' is ' + str(dict.get(key2)) + '% full'
+		list_of_strings.append(line)
+	return json.dumps(list_of_strings)
+
 
 def show_number(num_groups):
+
 	return '%s' % escape(num_groups)
+
+
 
 if __name__ == '__main__':
 	app.run()
