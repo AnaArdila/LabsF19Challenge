@@ -12,7 +12,7 @@ def main():
 	
 @app.route('/information/<building_name>')
 def show_building(building_name):
-	return 'Building is: %s' % escape(building_name)
+	return '%s is 20%% full' % escape(building_name)
 
 if __name__ == '__main__':
 	app.run()
