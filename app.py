@@ -23,7 +23,7 @@ def decide_query_type(query):
 	counter = 0
 	while counter < dict_num and is_name == False:
 		current_dict = list_of_dicts[counter]
-		if current_dict.get('parent_name') == query.capitalize():
+		if current_dict.get('parent_name') == query.replace('_', ' ').title():
 			is_name = True
 			parent_id = str(current_dict.get('parent_id'))
 		counter += 1
