@@ -49,7 +49,8 @@ def show_building(parent_id):
 		dict = list_of_dicts[x]
 		line = dict.get(key1) + ' is ' + str(dict.get(key2)) + '% full'
 		list_of_strings.append(line)
-	
+
+	list_of_strings.sort()	
 	return render_template("show_each_group.html", data=list_of_strings)
 
 
@@ -70,6 +71,7 @@ def show_number(num_groups):
 		line = dict.get(key1) + ' is ' + str(dict.get(key2)) + '% full'
 		list_of_strings.append(line)		
 	
+	list_of_strings.sort()
 	return render_template("show_each_group.html", data=list_of_strings)
 
 
