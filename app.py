@@ -42,13 +42,15 @@ def show_building(parent_id):
 	list_of_strings = []
 	list_of_dicts = data.get('data')
 	num_groups = len(list_of_dicts)
+	
 	key1 = 'group_name'
 	key2 = 'percent_full'
 	for x in range(num_groups):
 		dict = list_of_dicts[x]
 		line = dict.get(key1) + ' is ' + str(dict.get(key2)) + '% full'
 		list_of_strings.append(line)
-	return json.dumps(list_of_strings)
+	
+	return render_template("show_each_group.html", data=list_of_strings)
 
 
 def show_number(num_groups):
@@ -67,9 +69,8 @@ def show_number(num_groups):
 		dict = new_list[x]
 		line = dict.get(key1) + ' is ' + str(dict.get(key2)) + '% full'
 		list_of_strings.append(line)		
-
-	return json.dumps(list_of_strings)
-
+	
+	return render_template("show_each_group.html", data=list_of_strings)
 
 
 if __name__ == '__main__':
